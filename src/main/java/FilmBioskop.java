@@ -1,11 +1,9 @@
-package com.mycompany.sistemfilm;
-
-public class FilmBioskop extends Film {
+public class FilmBioskop extends Film implements DapatDinilai {
     private int hargaTiket;
     private String studio;
 
     public FilmBioskop(String judul, String sutradara, int tahunRilis, int hargaTiket, String studio) {
-        super(judul, sutradara, tahunRilis); // Memanggil constructor superclass
+        super(judul, sutradara, tahunRilis); 
         this.hargaTiket = hargaTiket;
         this.studio = studio;
     }
@@ -24,6 +22,16 @@ public class FilmBioskop extends Film {
 
     @Override
     public void caraNonton() {
-        System.out.println("-> Cara Nonton: Beli tiket fisik/online, datang ke bioskop, dan masuk ke studio yang ditentukan.");
+        System.out.println("-> Cara Nonton: Beli tiket, datang ke bioskop, dan masuk ke studio.");
+    }
+
+    @Override
+    public void tampilkanSyaratNonton() {
+        System.out.println("-> Syarat Nonton: Harus datang ke bioskop sesuai jam tayang dan membawa tiket fisik/e-ticket.");
+    }
+
+    @Override
+    public void beriRating(int bintang) {
+        System.out.println("-> [RATING BIOSKOP] Pengunjung memberi rating film ini " + bintang + "/5 bintang.");
     }
 }

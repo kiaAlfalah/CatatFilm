@@ -1,6 +1,4 @@
-package com.mycompany.sistemfilm;
-
-public class FilmDVD extends Film {
+public class FilmDVD extends Film implements DapatDinilai {
     private String format; 
     private int hargaBeli;
 
@@ -24,6 +22,16 @@ public class FilmDVD extends Film {
 
     @Override
     public void caraNonton() {
-        System.out.println("-> Cara Nonton: Masukkan kepingan " + this.format + " ke dalam pemutar disk/konsol, lalu sambungkan ke TV.");
+        System.out.println("-> Cara Nonton: Masukkan kepingan " + this.format + " ke dalam DVD Player.");
+    }
+
+    @Override
+    public void tampilkanSyaratNonton() {
+        System.out.println("-> Syarat Nonton: Membutuhkan alat pemutar disk dan layar TV yang berfungsi.");
+    }
+
+    @Override
+    public void beriRating(int bintang) {
+        System.out.println("-> [RATING FISIK] Kolektor kaset memberi rating " + bintang + "/5 bintang.");
     }
 }

@@ -1,11 +1,9 @@
-package com.mycompany.sistemfilm;
-
 import java.util.Scanner;
 
 public class MainFilm {
 
     public static void cariFilm(String judul, Film[] daftarFilm, int jumlahFilm) {
-        System.out.println("\n--- Hasil Pencarian Berdasarkan Judul (Teks): " + judul + " ---");
+        System.out.println("\n--- Hasil Pencarian Berdasarkan Judul: " + judul + " ---");
         boolean ditemukan = false;
         for (int i = 0; i < jumlahFilm; i++) {
             if (daftarFilm[i].getJudul().equalsIgnoreCase(judul)) {
@@ -18,7 +16,7 @@ public class MainFilm {
     }
 
     public static void cariFilm(int tahunRilis, Film[] daftarFilm, int jumlahFilm) {
-        System.out.println("\n--- Hasil Pencarian Berdasarkan Tahun (Angka): " + tahunRilis + " ---");
+        System.out.println("\n--- Hasil Pencarian Berdasarkan Tahun: " + tahunRilis + " ---");
         boolean ditemukan = false;
         for (int i = 0; i < jumlahFilm; i++) {
             if (daftarFilm[i].getTahunRilis() == tahunRilis) {
@@ -30,7 +28,6 @@ public class MainFilm {
         if (!ditemukan) System.out.println("Film tidak ditemukan.");
     }
 
-    
     public static void simulasiNonton(Film item) {
         item.caraNonton();
     }
@@ -48,7 +45,7 @@ public class MainFilm {
         while (isRunning) {
             System.out.println("\nMenu Utama:");
             System.out.println("1. Tambah Data Film Baru");
-            System.out.println("2. Lihat Daftar Film & Simulasi Nonton");
+            System.out.println("2. Lihat Daftar Film & Simulasi Method (Modul 7)");
             System.out.println("3. Cari Film (Fitur Overloading)");
             System.out.println("4. Keluar");
             System.out.print("Pilih menu (1-4): ");
@@ -83,15 +80,15 @@ public class MainFilm {
                             String studio = scanner.nextLine();
                             daftarFilm[jumlahFilm] = new FilmBioskop(judulBaru, sutradaraBaru, tahunBaru, harga, studio);
                         } else if (jenis == 2) {
-                            System.out.print("Masukkan Platform (Netflix/Disney+) : ");
+                            System.out.print("Masukkan Platform (Netflix) : ");
                             String platform = scanner.nextLine();
-                            System.out.print("Masukkan Resolusi (4K/1080p)        : ");
+                            System.out.print("Masukkan Resolusi (4K/1080p): ");
                             String resolusi = scanner.nextLine();
                             daftarFilm[jumlahFilm] = new FilmStreaming(judulBaru, sutradaraBaru, tahunBaru, platform, resolusi);
                         } else if (jenis == 3) {
-                            System.out.print("Masukkan Format (DVD/Blu-ray)       : ");
+                            System.out.print("Masukkan Format (DVD)       : ");
                             String format = scanner.nextLine();
-                            System.out.print("Masukkan Harga Beli Fisik (Rp)      : ");
+                            System.out.print("Masukkan Harga Beli (Rp)    : ");
                             int hargaBeli = scanner.nextInt();
                             scanner.nextLine();
                             daftarFilm[jumlahFilm] = new FilmDVD(judulBaru, sutradaraBaru, tahunBaru, format, hargaBeli);
@@ -112,9 +109,20 @@ public class MainFilm {
                             System.out.print((i + 1) + ". ");
                             daftarFilm[i].tampilkanInfo();
                             
-                            // Dynamic Binding beraksi: Memanggil method dengan argumen array Superclass
                             simulasiNonton(daftarFilm[i]);
-                            System.out.println();
+                            
+                            daftarFilm[i].tampilkanSyaratNonton();
+                            
+                            if (daftarFilm[i] instanceof DapatDiunduh) {
+                                DapatDiunduh itemUnduh = (DapatDiunduh) daftarFilm[i];
+                                itemUnduh.prosesUnduh();
+                            }
+                            
+                            if (daftarFilm[i] instanceof DapatDinilai) {
+                                DapatDinilai itemBisaDinilai = (DapatDinilai) daftarFilm[i];
+                                itemBisaDinilai.beriRating(5); 
+                            }
+                            System.out.println(); 
                         }
                         System.out.println("* Total Film Dibuat: " + Film.totalFilmDibuat);
                     }
