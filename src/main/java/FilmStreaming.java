@@ -2,7 +2,7 @@ public class FilmStreaming extends Film implements DapatDinilai, DapatDiunduh {
     private String platform;
     private String resolusiMaksimal;
 
-    public FilmStreaming(String judul, String sutradara, int tahunRilis, String platform, String resolusiMaksimal) {
+    public FilmStreaming(String judul, String sutradara, int tahunRilis, String platform, String resolusiMaksimal)throws InvalidFilmException {
         super(judul, sutradara, tahunRilis); 
         this.platform = platform;
         this.resolusiMaksimal = resolusiMaksimal;

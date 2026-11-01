@@ -2,7 +2,7 @@ public class FilmBioskop extends Film implements DapatDinilai {
     private int hargaTiket;
     private String studio;
 
-    public FilmBioskop(String judul, String sutradara, int tahunRilis, int hargaTiket, String studio) {
+    public FilmBioskop(String judul, String sutradara, int tahunRilis, int hargaTiket, String studio) throws InvalidFilmException {
         super(judul, sutradara, tahunRilis); 
         this.hargaTiket = hargaTiket;
         this.studio = studio;

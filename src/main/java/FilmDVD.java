@@ -2,7 +2,7 @@ public class FilmDVD extends Film implements DapatDinilai {
     private String format; 
     private int hargaBeli;
 
-    public FilmDVD(String judul, String sutradara, int tahunRilis, String format, int hargaBeli) {
+    public FilmDVD(String judul, String sutradara, int tahunRilis, String format, int hargaBeli) throws InvalidFilmException {
         super(judul, sutradara, tahunRilis); 
         this.format = format;
         this.hargaBeli = hargaBeli;

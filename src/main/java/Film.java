@@ -5,14 +5,16 @@ public abstract class Film {
     
     public static int totalFilmDibuat = 0;
 
-    public Film(String judul, String sutradara, int tahunRilis) {
+    public Film(String judul, String sutradara, int tahunRilis) throws InvalidFilmException {
+        if (judul == null || judul.trim().isEmpty()) {
+            throw new InvalidFilmException("GAGAL: Judul film tidak boleh kosong!");
+        }
         this.judul = judul;
         this.sutradara = sutradara;
         setTahunRilis(tahunRilis); 
         totalFilmDibuat++;
     }
 
-    
     public String getJudul() { return this.judul; }
     public void setJudul(String judul) { this.judul = judul; }
 
@@ -20,13 +22,12 @@ public abstract class Film {
     public void setSutradara(String sutradara) { this.sutradara = sutradara; }
 
     public int getTahunRilis() { return this.tahunRilis; }
-    public void setTahunRilis(int tahunRilis) {
-        if (tahunRilis > 1800) { 
-            this.tahunRilis = tahunRilis;
-        } else {
-            this.tahunRilis = 2026; 
-            System.out.println("Tahun rilis tidak valid! Otomatis diatur ke 2026.");
+    
+    public void setTahunRilis(int tahunRilis) throws InvalidFilmException {
+        if (tahunRilis < 1800) { 
+            throw new InvalidFilmException("GAGAL: Tahun rilis tidak valid! Harus di atas tahun 1800.");
         }
+        this.tahunRilis = tahunRilis;
     }
 
     public void tampilkanInfo() {
